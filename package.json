@@ -1,25 +1,51 @@
 {
-  "name": "diction-react",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
-    "react-scripts": "2.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "name": "diction-react",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "react": "^16.6.1",
+        "react-dom": "^16.6.1",
+        "react-dropzone": "^7.0.1",
+        "react-redux": "^5.1.0",
+        "react-scripts": "2.1.1",
+        "redux": "^4.0.1",
+        "redux-first-router": "^2.1.1",
+        "redux-first-router-link": "^1.4.2",
+        "redux-form": "^7.4.2",
+        "redux-thunk": "^2.3.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app",
+        "rules": {
+            "getter-return": [
+                0
+            ],
+            "no-useless-escape": [
+                0
+            ],
+            "jsx-a11y/href-no-hash": [
+                0
+            ],
+            "radix": [
+                "error",
+                "as-needed"
+            ]
+        }
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ],
+    "devDependencies": {
+        "node-sass": "^4.10.0",
+        "redux-logger": "^3.0.6"
+    }
 }

@@ -1,0 +1,51 @@
+.node-container {
+	position: relative;
+	width: fit-content;
+	margin: 10px;
+	min-width: 200px;
+	max-width: 33vw;
+	border-radius: 5px;
+	border: 2px solid gray;
+	background-color: white;
+	box-shadow: 0px 0px 10px transparent;
+	transition: box-shadow 200ms;
+
+
+	&:hover,&:focus {
+		box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+		outline: none;
+	}
+
+	.node-name,.node-text {
+		border: none;
+		width: 100%;
+
+	}
+
+	.node-name {
+		padding: 2px;
+		background-color: gray;
+		color: white;
+	}
+
+	.node-text {
+		padding: 8px;
+
+		&.node-speech {
+			color: black;
+			background-color: #a2f2ec;
+		}
+		&.node-reprompt {
+			color: white;
+			background-color: #3f4ca3;
+		}
+	}
+
+	.node-drop {
+		width: 100%;
+		min-height: 20px;
+		text-align: center;
+		padding: 8px;
+		font-size: 0.5em;
+	}
+}

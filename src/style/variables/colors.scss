@@ -1,0 +1,100 @@
+// For easy customization of your grayscale
+$black:             	    #000000;
+$gray-darker:				#2a2a2a;
+$gray-dark:					#53575A;
+$gray:						#808080;
+$gray-light:				#D8D8D8;
+$gray-lighter:				#F5F5F5;
+$white:						#ffffff;
+$transparent:				rgba(0,0,0,0);
+$black-trans:				rgba(0,0,0,0.8);
+$black-trans-light:			rgba(0,0,0,0.2);
+$white-trans:				rgba(255,255,255,0.8);
+$white-trans-light:			rgba(255,255,255,0.2);
+
+// Site colors (for easy site re-skinning)
+$color-primary:				#1dcad3;
+$color-secondary:			#53575A;
+$color-tertiary:			#F5F5F5;
+
+//  Form colors
+$color-succes:				#d6e9c6;
+$color-info: 				$color-primary;
+$color-warning:				#8a6d3b;
+$color-danger:				#cc2229;
+
+$color-highlight:			lighten($color-primary, 20%);
+
+// social media brand colors
+// https://www.lockedowndesign.com/social-media-colors/
+$social-email:				$color-primary;
+$social-email-dark:			darken($color-primary, 10%);
+
+$social-newsletter:			$color-secondary;
+$social-newsletter-dark:	darken($color-secondary, 10%);
+
+$social-donate:				$color-secondary;
+$social-donate-dark:		darken($color-secondary, 10%);
+
+$social-apple:				#a6b1b7;
+$social-apple-dark:			#333333;
+
+$social-facebook:			#3b5998;
+$social-facebook-dark:		#1d2d4c;
+
+$social-foursquare:			#f94877;
+$social-foursquare-dark:	#bf375b;
+
+$social-github:				#c6cbd1;
+$social-github-dark:		#959da5;
+
+$social-google:				#db4437;
+$social-google-dark:		#a82826;
+
+$social-google-play:		#ff8c00;
+$social-google-play-dark:	#f55a34;
+
+$social-instagram:			#c32aa3;
+$social-instagram-dark:		#96197c;
+
+$social-linkedin:			#007bb5;
+$social-linkedin-dark:		#063d5b;
+
+$social-pinterest:			#bd081c;
+$social-pinterest-dark:		#651014;
+
+$social-podcast:			#cd61f9;
+$social-podcast-dark:		#7a29b9;
+
+$social-reddit:				#ff4500;
+$social-reddit-dark:        #ab2e00;
+
+$social-rss:				#f26522;
+$social-rss-dark:			#ba4f1c;
+
+$social-snapchat:			#fffc00;
+$social-snapchat-dark:		#e9e918;
+
+$social-soundcloud:			#ff5500;
+$social-soundcloud-dark:	#c04101;
+
+$social-spotify:			#1ed760;
+$social-spotify-dark:		#1db954;
+
+$social-tumblr:             #35465d;
+$social-tumblr-dark:        #222e3d;
+
+$social-twitch:				#b9a3e3;
+$social-twitch-dark:		#6441a5;
+
+$social-twitter:			#1da1f2;
+$social-twitter-dark:		#125470;
+
+$social-vimeo:				#1ab7ea;
+$social-vimeo-dark:			#1280a4;
+
+$social-yelp:				#d32323;
+$social-yelp-dark:			#991b1b;
+
+$social-youtube:			#ff0000;
+$social-youtube-dark:		#c20202;

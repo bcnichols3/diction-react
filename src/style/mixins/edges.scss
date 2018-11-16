@@ -1,0 +1,39 @@
+//http://lea.verou.me/2011/03/beveled-corners-negative-border-radius-with-css3-gradients/
+
+@mixin bevel ($corner, $background) {
+	background: $background;
+	background:
+		linear-gradient(135deg, $corner 10px, $background 0) top left,
+		linear-gradient(225deg, $corner 10px, $background 0) top right,
+		linear-gradient(315deg, $corner 10px, $background 0) bottom right,
+		linear-gradient(45deg,  $corner 10px, $background 0) bottom left;
+
+	background-image:
+		radial-gradient(circle at 0 0, $corner 14px, $background 15px),
+		radial-gradient(circle at 100% 0, $corner 14px, $background 15px),
+		radial-gradient(circle at 100% 100%, $corner 14px, $background 15px),
+		radial-gradient(circle at 0 100%, $corner 14px, $background 15px);
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+// WIP
+// @mixin jewel ($corner, $color-light, $color-dark) {
+//
+// 	background-image:
+// 		radial-gradient(circle at 0 50%, $corner 14px, )
+// }
+
+
+@mixin slant ($background: $color-primary, $rotate: -2deg, $skew: -3deg) {
+	content: "";
+    position: absolute;
+	top: -24px;
+    left: -2px;
+    background-color: $background;
+    width: calc(100% + 3px);
+    height: 150px;
+    -webkit-transform: rotate($rotate) skewX($skew);
+    -ms-transform: rotate($rotate) skewX($skew);
+    transform: rotate($rotate) skewX($skew);
+}

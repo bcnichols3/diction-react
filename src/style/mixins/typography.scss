@@ -1,0 +1,41 @@
+@mixin fontface($name, $file, $weight: normal, $style: normal){
+	@font-face {
+	font-family: "#{$name}";
+	src: url('../fonts/#{$file}.eot');
+	src: url('../fonts/#{$file}.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/#{$file}.woff') format('woff'),
+	     url('../fonts/#{$file}.ttf') format('truetype');
+	font-weight: $weight;
+	font-style: $style;
+	}
+}
+
+@mixin max-font-size($size, $height:false) {
+	font-size: $size + 0vw;
+	 @if $height { line-height: $height + 0vw; }
+
+	@include sm-up() {
+		font-size: $size * 6px;
+		@if $height { line-height: $height * 6px; }
+	}
+}
+
+@mixin text-ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin bg-hover-darken($color) {
+	background-color: $color;
+	&:hover, &:focus {
+		background-color: darken($color, 10%);
+	}
+}
+
+@mixin text-hover-darken($color) {
+	color: $color;
+	&:hover, &:focus {
+		color: darken($color, 10%);
+	}
+}

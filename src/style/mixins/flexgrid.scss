@@ -1,0 +1,30 @@
+// Grid system
+// Generate semantic grid columns with these mixins.
+
+$cols: 12;
+$grid-gutter: 10px;
+
+section {
+	padding: 10px;
+	display: flex;
+	flex-basis: 100%;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+// Grids alla Morgan Feeney: https://codepen.io/morganfeeney/post/dont-build-bootstrap-style-grid-systems-with-flexbox
+@mixin col(
+	$col,
+	$sibling: false,
+	$sibling-offset: $grid-gutter + $grid-gutter,
+	$width: 100% / $cols * $col,
+	$grid-gutter: $grid-gutter,
+	$fg: 1,
+	$fs: 1
+){
+	@if $sibling == true {
+		flex: $fg $fs calc(#{$width} - #{$sibling-offset});
+	} @else {
+		flex: $fg $fs calc(#{$width} - #{$grid-gutter});
+	}
+}

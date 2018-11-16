@@ -1,0 +1,17 @@
+@mixin font-normal($weight:500) {
+	font-family: "Montserrat", sans-serif;
+	font-weight: $weight;
+	font-style: normal;
+}
+
+@mixin font-display($weight:500) {
+	font-family: "Cinzel Decorative", cursive;
+	font-weight: $weight;
+	font-style: normal;
+}
+
+@mixin font-game($weight:500) {
+	font-family: "PT Mono", monospace;
+	font-weight: $weight;
+	font-style: normal;
+}

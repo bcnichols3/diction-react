@@ -1,0 +1,30 @@
+{
+    "id": 1,
+    "title": "My Project",
+    "graphsById": {
+        "welcome": {
+            "id": "welcome",
+            "name": "Welcome",
+            "allNodeIds": [
+                "ABCDE"
+            ]
+        }
+    },
+    "allGraphIds": [
+        "welcome"
+    ],
+    "nodesById": {
+        "ABCDE": {
+            "id": "ABCDE",
+            "graphId": "welcome",
+            "name": "welcome",
+            "speech": "Hello world",
+            "reprompt": "How are you?",
+            "audio": [],
+            "connections": []
+        }
+    },
+    "allNodeIds": [
+        "ABCDE"
+    ]
+}
