@@ -1,13 +1,11 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 /* -----------------    COMPONENT     ------------------ */
 
-export default class Node extends PureComponent {
-    render() {
-        return (
-			<section>
-				{this.props.children}
-			</section>
-        );
-    }
-}
+const Section = ({children}) => (
+	<section>
+		{children}
+	</section>
+)
+
+export default Section

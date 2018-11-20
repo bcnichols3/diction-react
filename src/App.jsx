@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 
-import Graph from './presenters/Graph';
+import ProjectPage from './containers/ProjectPage';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -11,7 +11,7 @@ export default class App extends Component {
     render() {
         return (
 			<Provider store={store}>
-				<Graph />
+				<ProjectPage />
 			</Provider>
         );
     }

@@ -1,16 +1,19 @@
 import React, { PureComponent } from 'react';
 import {connect} from 'react-redux';
+import './style.scss';
 
 import {actions as projectActions} from '../../../reducers/project';
 
 import Dropzone from 'react-dropzone';
-import AddButton from '../AddButton';
+import Decision from '../Decision';
+import Connection from '../Connection';
 
 /* -----------------    COMPONENT     ------------------ */
 
 class Node extends PureComponent {
 	constructor(props) {
 		super(props);
+
 		this.handleChange = this.handleChange.bind(this);
 		this.handleDrop = this.handleDrop.bind(this);
 	}
@@ -33,7 +36,7 @@ class Node extends PureComponent {
 	}
 
     render() {
-		const {node} = this.props;
+		const {node, connections, allConnectedNodeIds} = this.props;
 
         return (
 			<div className="node-wrapper">
@@ -41,16 +44,19 @@ class Node extends PureComponent {
 					<input type="text"
 						className="node-name"
 						value={node.name}
+						placeholder="node name"
 						onChange={this.handleChange}
 					/>
 					<input type="text"
 						className="node-text node-speech"
 						value={node.speech}
+						placeholder="speech"
 						onChange={this.handleChange}
 					/>
 					<input type="text"
 						className="node-text node-reprompt"
 						value={node.reprompt}
+						placeholder="reprompt"
 						onChange={this.handleChange}
 					/>
 					<Dropzone className="node-drop"
@@ -59,14 +65,26 @@ class Node extends PureComponent {
 						Add Audio
 					</Dropzone>
 				</div>
-				<AddButton />
+				<Decision node={node}/>
+				{allConnectedNodeIds.map(connectedNodeId => (
+					<Connection
+						key={node.id + connectedNodeId}
+						origId={node.id}
+						destId={connectedNodeId}
+						{...connections[connectedNodeId]}
+					/>
+				))}
 			</div>
         );
     }
 }
 
+/* -----------------    CONTAINER     ------------------ */
+
 const mapState = ({project}, {nodeId}) => ({
-	node: project.nodesById[nodeId]
+	node: project.nodesById[nodeId],
+	connections: project.connections[nodeId],
+	allConnectedNodeIds: Object.keys(project.connections[nodeId] || {})
 });
 
 const mapDispatch = {

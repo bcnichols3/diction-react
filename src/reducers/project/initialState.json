@@ -6,25 +6,30 @@
             "id": "welcome",
             "name": "Welcome",
             "allNodeIds": [
-                "ABCDE"
+                "ABCDEFGHIJ"
+            ],
+            "allSectionIds": [
+                1
             ]
         }
     },
     "allGraphIds": [
         "welcome"
     ],
+    "selectedGraphId": "welcome",
     "nodesById": {
-        "ABCDE": {
-            "id": "ABCDE",
+        "ABCDEFGHIJ": {
+            "id": "ABCDEFGHIJ",
             "graphId": "welcome",
+            "sectionId": 1,
             "name": "welcome",
             "speech": "Hello world",
             "reprompt": "How are you?",
-            "audio": [],
-            "connections": []
+            "audio": []
         }
     },
     "allNodeIds": [
-        "ABCDE"
-    ]
+        "ABCDEFGHIJ"
+    ],
+    "connections": {}
 }
