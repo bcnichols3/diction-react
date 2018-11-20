@@ -7,6 +7,7 @@ import {actions as projectActions} from '../../../reducers/project';
 import Dropzone from 'react-dropzone';
 import Decision from '../Decision';
 import Connection from '../Connection';
+import NodeText from './NodeText';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -21,8 +22,10 @@ class Node extends PureComponent {
 	handleChange(evt) {
 		const {updateNode, node} = this.props;
 		const {classList, value} = evt.target;
-		const key = Array.from(classList).includes("node-speech")
-			? "speech" : "reprompt";
+		const CLASSES = Array.from(classList);
+		let key = "name";
+		if (CLASSES.includes("node-speech")) key = "speech";
+		if (CLASSES.includes("node-reprompt")) key = "reprompt"
 
 		const editedNode = Object.assign({}, node, {
 			[key]: value
@@ -47,17 +50,17 @@ class Node extends PureComponent {
 						placeholder="node name"
 						onChange={this.handleChange}
 					/>
-					<input type="text"
-						className="node-text node-speech"
-						value={node.speech}
-						placeholder="speech"
-						onChange={this.handleChange}
+					<NodeText type="speech"
+						attributes={{
+							value: node.speech,
+							onChange: this.handleChange
+						}}
 					/>
-					<input type="text"
-						className="node-text node-reprompt"
-						value={node.reprompt}
-						placeholder="reprompt"
-						onChange={this.handleChange}
+					<NodeText type="reprompt"
+						attributes={{
+							value: node.reprompt,
+							onChange: this.handleChange
+						}}
 					/>
 					<Dropzone className="node-drop"
 						accept="audio/mp3, audio/wav"

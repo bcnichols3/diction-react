@@ -9,6 +9,7 @@ import {advanceModalPhase} from "../../../reducers/ui";
 
 const Decision = ({handleClick}) => (
 	<div className="decision-wrapper">
+		<div className="decision-line decision-orig-line" />
 		<button onClick={handleClick} className="decision">
 			+
 		</button>

@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import "./style.scss";
 
 import {actions as projectActions} from "../../../reducers/project";
 // import {advanceModalPhase} from "../../reducers/ui";
@@ -7,7 +8,7 @@ import {actions as projectActions} from "../../../reducers/project";
 /* -----------------    COMPONENT     ------------------ */
 
 const Connection = ({origId, destId, label, handleChange}) => (
-	<div className="node-relationship">
+	<div className="node-connection">
 		<input value={label} onChange={handleChange}/>
 	</div>
 )
