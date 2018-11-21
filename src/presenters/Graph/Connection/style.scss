@@ -1,10 +1,14 @@
 .node-connection {
 	position: absolute;
-	left: 0;
-	bottom: 0;
+	transform: translateX(-50%);
+    left: 50%;
+	bottom: 10px;
 
-	input {
+	input.connection-label {
+		position: absolute;
 		background-color: transparent;
 		border: none;
+		width: 150px;
+		left: 10px;
 	}
 }

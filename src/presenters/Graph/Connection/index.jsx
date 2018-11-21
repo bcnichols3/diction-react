@@ -5,11 +5,17 @@ import "./style.scss";
 import {actions as projectActions} from "../../../reducers/project";
 // import {advanceModalPhase} from "../../reducers/ui";
 
+import Line from "../Line";
+
 /* -----------------    COMPONENT     ------------------ */
 
 const Connection = ({origId, destId, label, handleChange}) => (
 	<div className="node-connection">
-		<input value={label} onChange={handleChange}/>
+		<Line className="connection-line"/>
+		<input
+			className="connection-label"
+			value={label}
+			onChange={handleChange}/>
 	</div>
 )
 

@@ -14,7 +14,6 @@ const NodeText = ({type, attributes}) => (
 );
 
 function getHeight(value) {
-	console.log('VALUE', value.length / 28);
 	return (4 + Math.ceil(value.length / 28) * 22) + "px";
 }
 

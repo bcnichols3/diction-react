@@ -24,7 +24,7 @@
             "sectionId": 1,
             "name": "welcome",
             "speech": "Hello world",
-            "reprompt": "How are you?",
+            "reprompt": "Ready to get started?",
             "audio": []
         }
     },

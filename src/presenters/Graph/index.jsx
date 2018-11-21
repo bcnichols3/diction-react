@@ -6,9 +6,10 @@ import Section from './Section';
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Graph = ({sections}) => {
+const Graph = ({graphName, sections}) => {
 	return (
 		<div className="graph-wrapper">
+			<h1>{graphName}</h1>
 			{sections.map(section => (
 				<Section key={section.id}>
 					{section.allNodeIds.map(nodeId => (
@@ -25,6 +26,7 @@ const Graph = ({sections}) => {
 const mapState = ({project, ui}) => {
 	const graph = project.graphsById[project.selectedGraphId];
 	return {
+		graphName: graph.name,
 		sections: graph.allSectionIds.map(sectionId => ({
 			id: sectionId,
 			allNodeIds: graph.allNodeIds.filter(nodeId => {

@@ -5,14 +5,14 @@ import "./style.scss";
 import {actions as projectActions} from "../../../reducers/project";
 import {advanceModalPhase} from "../../../reducers/ui";
 
+import Line from "../Line";
+
 /* -----------------    COMPONENT     ------------------ */
 
 const Decision = ({handleClick}) => (
 	<div className="decision-wrapper">
-		<div className="decision-line decision-orig-line" />
-		<button onClick={handleClick} className="decision">
-			+
-		</button>
+		<Line className="decision-line" />
+		<div onClick={handleClick} className="decision" />
 	</div>
 );
 

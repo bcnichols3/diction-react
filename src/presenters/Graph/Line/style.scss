@@ -1,0 +1,30 @@
+.line {
+	position: absolute;
+	background-color: black;
+	transform: translateX(-50%);
+	z-index: -1;
+	width: 10px;
+	height: 50px;
+
+	left: 50%;
+	top: -40px;
+
+	&.decision-line {
+
+	}
+
+	&.connection-line {
+		height: 70px;
+		top: -30px;
+	}
+
+	&.one-of-one {
+
+	}
+	&.one-of-two {
+
+	}
+	&.two-of-two {
+
+	}
+}
