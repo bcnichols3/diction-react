@@ -16,7 +16,7 @@ const types = {
 	SELECT_NODE: "SELECT_NODE",
 	CREATE_NODE: "CREATE_NODE",
 	UPDATE_NODE: "UPDATE_NODE",
-	UPDATE_CONNECTION: "UPDATE_CONNECTION",
+	UPDATE_EDGE: "UPDATE_EDGE",
 	CREATE_LINK: "CREATE_LINK",
 	UPDATE_LINK: "UPDATE_LINK",
 };
@@ -56,12 +56,12 @@ export const handlers = {
 				: allSectionIds.concat(newNodeSectionId)
 		});
 
-		if (!state.connections[selectedNodeId]) {
-			state.connections[selectedNodeId] = {};
+		if (!state.edges[selectedNodeId]) {
+			state.edges[selectedNodeId] = {};
 		}
 
-		state.connections[selectedNodeId][newNodeId] = {
-			label: "New Connection"
+		state.edges[selectedNodeId][newNodeId] = {
+			label: "New Edge"
 		}
 
 		state.nodesById = Object.assign({}, nodesById, {
@@ -83,9 +83,9 @@ export const handlers = {
 		state.nodesById[payload.id] = payload;
 		return state;
 	},
-	[types.UPDATE_CONNECTION]: function(state, {origId, destId, label}) {
+	[types.UPDATE_EDGE]: function(state, {origId, destId, label}) {
 		state = Object.assign({}, state);
-		state.connections[origId][destId] = {
+		state.edges[origId][destId] = {
 			label
 		};
 		return state;

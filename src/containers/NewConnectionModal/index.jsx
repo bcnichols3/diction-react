@@ -7,7 +7,7 @@ import {actions as projectActions} from "../../reducers/project";
 import {advanceModalPhase} from "../../reducers/ui";
 
 const delay = 200;
-const name = "newConnection"
+const name = "newEdge"
 
 /* -----------------    COMPONENT     ------------------ */
 

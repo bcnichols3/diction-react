@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import Node from './Node';
 import Section from './Section';
+
+import Node from '../Node';
 
 /* -----------------    COMPONENT     ------------------ */
 
