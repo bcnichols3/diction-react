@@ -1,25 +1,46 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import "./style.scss";
 
-import Section from './Section';
+import {actions as projectActions} from "../../reducers/project";
+import {actions as uiActions} from "../../reducers/ui";
 
 import Node from '../Node';
+import Edge from "../Edge";
+
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Graph = ({graphName, sections}) => {
-	return (
-		<div className="graph-wrapper">
-			<h1>{graphName}</h1>
-			{sections.map(section => (
-				<Section key={section.id}>
-					{section.allNodeIds.map(nodeId => (
-						<Node key={nodeId} nodeId={nodeId} />
-					))}
-				</Section>
-			))}
-		</div>
-	)
+class Graph extends PureComponent {
+	componentDidMount() {
+		this.listener = window.addEventListener("resize", this.props.handleResize);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.props.handleResize)
+	}
+
+	render() {
+		const {graph, edges, nodesById, handleClick} = this.props;
+
+		return (
+			<div className="graph-wrapper" onClick={handleClick}>
+				<h1>{graph.name}</h1>
+				{graph.allNodeIds.map((nodeId, idx) => (
+					<Node key={nodeId} node={nodesById[nodeId]} />
+				))}
+				{graph.allNodeIds.map(origId => {
+					if (!edges[origId]) return null;
+					return Object.keys(edges[origId]).map(destId => (
+						<Edge key={origId + destId}
+							origId={origId}
+							destId={destId}
+						/>
+					))
+				})}
+			</div>
+		)
+	}
 }
 
 /* -----------------    CONTAINER     ------------------ */
@@ -27,14 +48,19 @@ const Graph = ({graphName, sections}) => {
 const mapState = ({project, ui}) => {
 	const graph = project.graphsById[project.selectedGraphId];
 	return {
-		graphName: graph.name,
-		sections: graph.allSectionIds.map(sectionId => ({
-			id: sectionId,
-			allNodeIds: graph.allNodeIds.filter(nodeId => {
-				return project.nodesById[nodeId].sectionId === sectionId
-			})
-		}))
+		graph,
+		edges: project.edges,
+		nodesById: project.nodesById
 	}
 }
 
-export default connect(mapState)(Graph);
+const mapDispatch = (dispatch => ({
+	handleResize(evt) {
+		dispatch(uiActions.windowChange());
+	},
+	handleClick(evt) {
+		dispatch(projectActions.selectNode({nodeId: null}))
+	}
+}))
+
+export default connect(mapState, mapDispatch)(Graph);

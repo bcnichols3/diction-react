@@ -1,64 +1,26 @@
 .node-wrapper {
-	position: relative;
+	position: absolute;
+	transform: translate(-50%, -50%);
 
 	.node-container {
 		position: relative;
-		width: fit-content;
-		margin: 10px 10px 100px 10px;
-		min-width: 200px;
-		max-width: 33vw;
-		border-radius: 5px;
-		border: 2px solid gray;
-		background-color: white;
-		box-shadow: 0px 0px 10px transparent;
+		margin: 10px;
+		margin-bottom: 40px;
+		z-index: 5;
 		transition: box-shadow 200ms;
-		z-index: 20;
 
-		&:hover,&:focus {
-			box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+		&:not(.selected):hover,&:not(.selected):focus {
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 			outline: none;
+		}
+
+		&.selected {
+			box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
 		}
 
 		.node-name,.node-text {
 			border: none;
 			width: 100%;
-		}
-
-		.node-name {
-			padding: 2px;
-			background-color: gray;
-			color: white;
-		}
-
-		.node-text {
-			display: block;
-			padding: 8px;
-			resize: none;
-			overflow: hidden;
-			min-height: 60px;
-			height: fit-content;
-			font-family: monospace;
-
-			&.node-speech {
-				color: black;
-				background-color: #a2f2ec;
-			}
-			&.node-reprompt {
-				color: white;
-				background-color: #3f4ca3;
-			}
-
-			&:active,&:hover,&:focus {
-				outline: none;
-			}
-		}
-
-		.node-drop {
-			width: 100%;
-			min-height: 20px;
-			text-align: center;
-			padding: 8px;
-			font-size: 0.5em;
 		}
 	}
 }

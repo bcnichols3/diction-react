@@ -3,24 +3,31 @@ import {createHandlerReducer, buildActionCreators} from "../../helpers";
 // ========== TYPES
 
 const types = {
-	TOGGLE_NAV: "TOGGLE_NAV",
-	PHASE_MODAL: "PHASE_MODAL"
+	TOGGLE_APPBAR: "TOGGLE_APPBAR",
+	TOGGLE_SIDEBAR: "TOGGLE_SIDEBAR",
+	PHASE_MODAL: "PHASE_MODAL",
+	WINDOW_CHANGE: "WINDOW_CHANGE"
 };
 
 // ========== INITIAL STATE
 
 export const initial = {
-	navOpen: false,
+	appbarOpen: false,
+	sidebarOpen: false,
 	modalPhases: {
 		newConnection: "closed"
-	}
+	},
+	graphSize: {
+		width: window.innerWidth,
+		height: window.innerHeight
+	},
 };
 
 // ========== HANDLERS
 export const handlers = {
-	[types.TOGGLE_NAV]: function(state) {
+	[types.TOGGLE_APPBAR]: function(state) {
 		return Object.assign({}, state, {
-			navOpen: !state.navOpen
+			appbarOpen: !state.appbarOpen
 		});
 	},
 	[types.PHASE_MODAL]: function(state, {name, phase}) {
@@ -29,6 +36,14 @@ export const handlers = {
 				[name]: phase
 			})
 		});
+	},
+	[types.WINDOW_CHANGE]: function(state) {
+		return Object.assign({}, state, {
+			graphSize: {
+				width: window.innerWidth,
+				height: window.innerHeight
+			}
+		})
 	}
 }
 

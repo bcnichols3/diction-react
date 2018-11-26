@@ -1,3 +1,4 @@
 .graph-wrapper {
-	overflow: scroll;
+	overflow: auto;
+	min-height: 100vh;
 }

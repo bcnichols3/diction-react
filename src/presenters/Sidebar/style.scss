@@ -1,0 +1,27 @@
+.sidebar-container {
+	position: fixed;
+	display: flex;
+	flex-flow: column nowrap;
+	left: -150px;
+	top: 0;
+	height: 100vh;
+	width: 150px;
+	padding: 0 5px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-color: rgba(0,0,0,0.5);
+	transition: left 200ms;
+
+	&.open {
+		left: 0px;
+	}
+
+	button {
+		margin: 5px;
+		border-radius: 10px;
+	}
+
+	.separator {
+		height: 10px;
+	}
+}

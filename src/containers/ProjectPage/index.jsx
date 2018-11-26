@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import {connect} from "react-redux";
 
 import Graph from "../../presenters/Graph";
+import Sidebar from "../../presenters/Sidebar";
 
 import NewConnectionModal from "../NewConnectionModal";
 
@@ -9,6 +10,7 @@ import NewConnectionModal from "../NewConnectionModal";
 
 const ProjectPage = ({project, newConnModalPhase}) => (
 	<Fragment>
+		<Sidebar />
 		{newConnModalPhase !== 'closed'
 			? <NewConnectionModal phase={newConnModalPhase}/>
 		: null}

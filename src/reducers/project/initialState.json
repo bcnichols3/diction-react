@@ -6,10 +6,8 @@
             "id": "welcome",
             "name": "Welcome",
             "allNodeIds": [
-                "ABCDEFGHIJ"
-            ],
-            "allSectionIds": [
-                1
+                "reqABCDEFGHIJ",
+                "resKLMNOPQRST"
             ]
         }
     },
@@ -17,19 +15,43 @@
         "welcome"
     ],
     "selectedGraphId": "welcome",
+    "selectedNodeId": null,
     "nodesById": {
-        "ABCDEFGHIJ": {
-            "id": "ABCDEFGHIJ",
+        "reqABCDEFGHIJ": {
+            "id": "reqABCDEFGHIJ",
+            "parentId": null,
+            "type": "request",
             "graphId": "welcome",
-            "sectionId": 1,
+            "name": "launch",
+            "loc": {
+                "x": 500,
+                "y": 175
+            }
+        },
+        "resKLMNOPQRST": {
+            "id": "resKLMNOPQRST",
+            "parentId": "reqABCDEFGHIJ",
+            "type": "response",
+            "graphId": "welcome",
             "name": "welcome",
-            "speech": "Hello world",
-            "reprompt": "Ready to get started?",
-            "audio": []
+            "speech": "Hello world. Ready to get started?",
+            "reprompt": "",
+            "audio": [],
+            "loc": {
+                "x": 500,
+                "y": 350
+            }
         }
     },
     "allNodeIds": [
-        "ABCDEFGHIJ"
+        "reqABCDEFGHIJ",
+        "resKLMNOPQRST"
     ],
-    "edges": {}
+    "edges": {
+        "reqABCDEFGHIJ": {
+            "resKLMNOPQRST": {
+                "label": ""
+            }
+        }
+    }
 }

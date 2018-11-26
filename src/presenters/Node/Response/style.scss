@@ -1,0 +1,45 @@
+.node-wrapper.node-response .node-container {
+	width: fit-content;
+	min-width: 200px;
+	max-width: 33vw;
+	border-radius: 5px;
+	border: 2px solid gray;
+	background-color: white;
+
+	.node-name {
+		padding: 2px;
+		background-color: gray;
+		color: white;
+	}
+
+	.node-text {
+		display: block;
+		padding: 8px;
+		resize: none;
+		overflow: hidden;
+		min-height: 60px;
+		height: fit-content;
+		font-family: monospace;
+
+		&.node-speech {
+			color: black;
+			background-color: #a2f2ec;
+		}
+		&.node-reprompt {
+			color: white;
+			background-color: #3f4ca3;
+		}
+
+		&:active,&:hover,&:focus {
+			outline: none;
+		}
+	}
+
+	.node-drop {
+		width: 100%;
+		min-height: 20px;
+		text-align: center;
+		padding: 8px;
+		font-size: 0.5em;
+	}
+}

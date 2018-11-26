@@ -1,10 +1,10 @@
-.node-connection {
+.edge-wrapper {
 	position: absolute;
-	transform: translateX(-50%);
-    left: 50%;
-	bottom: 10px;
+    left: 0;
+	top: 0;
+    z-index: -1;
 
-	input.connection-label {
+	input.edge-label {
 		position: absolute;
 		background-color: transparent;
 		border: none;

@@ -1,14 +1,7 @@
 import {createHandlerReducer, buildActionCreators} from "../../helpers";
 import initialState from './initialState';
 
-function createId(length=10) {
-	let id = "";
-	for (let i = 0; i < length; i++) {
-		const num = Math.random() * (90 - 65) + 65;
-		id += String.fromCharCode(num);
-	}
-	return id;
-}
+import createNode from "./createNode";
 
 // ========== TYPES
 
@@ -16,9 +9,9 @@ const types = {
 	SELECT_NODE: "SELECT_NODE",
 	CREATE_NODE: "CREATE_NODE",
 	UPDATE_NODE: "UPDATE_NODE",
-	UPDATE_EDGE: "UPDATE_EDGE",
-	CREATE_LINK: "CREATE_LINK",
-	UPDATE_LINK: "UPDATE_LINK",
+	DELETE_NODE: "DELETE_NODE",
+	RECOVER_NODE: "RECOVER_NODE",
+	UPDATE_EDGE: "UPDATE_EDGE"
 };
 
 // ========== INITIAL STATE
@@ -32,55 +25,45 @@ export const handlers = {
 			selectedNodeId: nodeId
 		});
 	},
-	[types.CREATE_NODE]: function(state) {
-		state = Object.assign({}, state);
+	[types.CREATE_NODE]: function(state, {type}) {
+		const newState = Object.assign({}, state);
 
-		const newNodeId = createId();
-		const {
-			selectedGraphId, selectedNodeId, graphsById, nodesById
-		} = state;
+		const selectedGraph = newState.graphsById[newState.selectedGraphId];
+		const {allNodeIds} = selectedGraph;
+		const selectedNode = newState.nodesById[newState.selectedNodeId];
 
-		const selectedGraph = graphsById[selectedGraphId];
-		const {allNodeIds, allSectionIds} = selectedGraph;
-		const selectedNode = nodesById[selectedNodeId];
+		const newNode = createNode(type, selectedNode, selectedGraph);
 
-		const newNodeSectionId = selectedNode.sectionId + 1;
+		if (!newState.edges[selectedNode.id]) {
+			newState.edges[selectedNode.id] = {};
+		}
 
-		const NEW_SECTION = allSectionIds.includes(newNodeSectionId);
-
-		state.allNodeIds = state.allNodeIds.concat(newNodeId);
-		graphsById[selectedGraphId] = Object.assign({}, selectedGraph, {
-			allNodeIds: allNodeIds.concat(newNodeId),
-			allSectionIds: NEW_SECTION
-				? allSectionIds
-				: allSectionIds.concat(newNodeSectionId)
+		newState.allNodeIds = newState.allNodeIds.concat(newNode.id);
+		newState.edges[selectedNode.id][newNode.id] = { label: "New Edge" };
+		newState.nodesById = Object.assign({}, newState.nodesById, {
+			[newNode.id]: newNode
 		});
-
-		if (!state.edges[selectedNodeId]) {
-			state.edges[selectedNodeId] = {};
-		}
-
-		state.edges[selectedNodeId][newNodeId] = {
-			label: "New Edge"
-		}
-
-		state.nodesById = Object.assign({}, nodesById, {
-			[newNodeId]: {
-				id: newNodeId,
-				graphId: selectedGraphId,
-				sectionId: newNodeSectionId,
-				name: "New Node",
-				speech: "",
-				reprompt: "",
-				audio: []
+		newState.graphsById[selectedGraph.id] = Object.assign({},
+			selectedGraph, {
+				allNodeIds: allNodeIds.concat(newNode.id)
 			}
-		});
+		);
 
+		return newState;
+	},
+	[types.UPDATE_NODE]: function(state, node) {
+		state = Object.assign({}, state);
+		state.nodesById[node.id] = node;
 		return state;
 	},
-	[types.UPDATE_NODE]: function(state, payload) {
-		state = Object.assign({}, state)
-		state.nodesById[payload.id] = payload;
+	[types.DELETE_NODE]: function(state, {nodeId}) {
+		state = Object.assign({}, state);
+		state.nodesById[nodeId].deactivated = true;
+		return state;
+	},
+	[types.RECOVER_NODE]: function(state, {nodeId}) {
+		state = Object.assign({}, state);
+		state.nodesById[nodeId].deactivated = false;
 		return state;
 	},
 	[types.UPDATE_EDGE]: function(state, {origId, destId, label}) {

@@ -1,13 +1,8 @@
-.decision-wrapper {
-	position: absolute;
-	transform: translateX(-50%);
-	left: 50%;
-	bottom: 30px;
+.node-wrapper.node-decision .node-container {
 	height: 30px;
 	width: 30px;
-	z-index: 2;
 
-	.decision {
+	.node-fork {
 		cursor: pointer;
 		width: 100%;
 		height: 100%;
