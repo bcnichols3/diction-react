@@ -53,7 +53,9 @@ export const handlers = {
 	},
 	[types.UPDATE_NODE]: function(state, node) {
 		state = Object.assign({}, state);
-		state.nodesById[node.id] = node;
+		state.nodesById = Object.assign({}, state.nodesById, {
+			[node.id]: node
+		});
 		return state;
 	},
 	[types.DELETE_NODE]: function(state, {nodeId}) {

@@ -3,6 +3,7 @@ import "./style.scss";
 
 import Dropzone from "react-dropzone";
 import NodeText from "../NodeText";
+import NodeDrag from "../NodeDrag";
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -22,6 +23,7 @@ class ResponseNode extends PureComponent {
 
         return (
 			<div className={className}>
+				<NodeDrag {...this.props}/>
 				<input type="text"
 					className="node-name"
 					value={node.name}

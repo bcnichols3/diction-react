@@ -5,6 +5,7 @@ import {createHandlerReducer, buildActionCreators} from "../../helpers";
 const types = {
 	TOGGLE_APPBAR: "TOGGLE_APPBAR",
 	TOGGLE_SIDEBAR: "TOGGLE_SIDEBAR",
+	TOGGLE_NODE_DRAG: "TOGGLE_NODE_DRAG",
 	PHASE_MODAL: "PHASE_MODAL",
 	WINDOW_CHANGE: "WINDOW_CHANGE"
 };
@@ -17,6 +18,7 @@ export const initial = {
 	modalPhases: {
 		newConnection: "closed"
 	},
+	nodeDrag: false,
 	graphSize: {
 		width: window.innerWidth,
 		height: window.innerHeight
@@ -43,6 +45,11 @@ export const handlers = {
 				width: window.innerWidth,
 				height: window.innerHeight
 			}
+		})
+	},
+	[types.TOGGLE_NODE_DRAG]: function(state) {
+		return Object.assign({}, state, {
+			nodeDrag: !state.nodeDrag
 		})
 	}
 }

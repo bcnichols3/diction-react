@@ -6,13 +6,18 @@ import classNames from "classnames";
 
 import {actions as projectActions} from "../../reducers/project";
 
+import NodeInfo from "./NodeInfo";
+
 /* -----------------    COMPONENT     ------------------ */
 
 const Sidebar = (props) => {
-	const {selectedNode, open} = props;
+	const {selectedNode, open, node} = props;
 	const CLASS_NAME = classNames("sidebar-container", {open});
+	console.log('SELECTED NODE', selectedNode);
+
 	return (
 		<div className={CLASS_NAME}>
+			<NodeInfo {...node} />
 			{selectedNode && selectedNode.name}
 			<button data-type="response"
 				onClick={props.handleCreate}>
@@ -39,16 +44,16 @@ const Sidebar = (props) => {
 
 const mapState = ({ui, project}) => ({
 	open: !!project.nodesById[project.selectedNodeId],
-	selectedNode: project.nodesById[project.selectedNodeId]
+	node: project.nodesById[project.selectedNodeId]
 });
 
-const mapDispatch = (dispatch, {selectedNode}) => ({
+const mapDispatch = (dispatch, {node}) => ({
 	handleCreate(evt) {
 		const {type} = evt.target.dataset
 		dispatch(projectActions.createNode({type}));
 	},
 	handleDelete(evt) {
-		dispatch(projectActions.deleteNode({nodeId: selectedNode.id}));
+		dispatch(projectActions.deleteNode({nodeId: node.id}));
 	}
 });
 

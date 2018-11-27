@@ -12,6 +12,14 @@
 		color: white;
 	}
 
+	.node-drag-area {
+		position: absolute;
+		right: 0;
+		width: 10px;
+		height: 10px;
+		background-color: purple;
+	}
+
 	.node-text {
 		display: block;
 		padding: 8px;
