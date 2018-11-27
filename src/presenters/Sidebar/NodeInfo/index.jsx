@@ -1,10 +1,12 @@
 import React, {Fragment} from "react";
 
+import SidebarSection from "../SidebarSection";
+
 const types = {
 	response: props => (
 		<Fragment>
 			<h6>Response</h6>
-			<p>{`Name: ${props.name}`}</p>
+			<p>{`${props.graphId}.${props.name}`}</p>
 		</Fragment>
 	),
 	request: props => (
@@ -17,15 +19,20 @@ const types = {
 		<Fragment>
 			<h6>Decision</h6>
 		</Fragment>
+	),
+	comment: props => (
+		<Fragment>
+			<h6>Comment</h6>
+		</Fragment>
 	)
 }
 
 const NodeInfo = (props) => {
 	if (!props.type) return null;
 
-	return (<div className="node-info">
+	return (<SidebarSection className="node-info">
 		{types[props.type](props)}
-	</div>)
+	</SidebarSection>)
 }
 
 export default NodeInfo;

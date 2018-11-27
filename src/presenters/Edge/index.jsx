@@ -9,15 +9,21 @@ import {actions as projectActions} from "../../reducers/project";
 /* -----------------    COMPONENT     ------------------ */
 
 const Edge = ({label, orig, dest, viewBox, handleChange}) => {
+	const lineId = `edge_${orig.id}_${dest.id}`
 	return (
 		<svg className="edge-wrapper"
 			viewBox={viewBox}
 			xmlns="http://www.w3.org/2000/svg">
-			<line stroke="black"
+			<path id={lineId}
+				stroke="black"
 				strokeWidth="5px"
-				x1={orig.loc.x} y1={orig.loc.y}
-				x2={dest.loc.x} y2={dest.loc.y}
+				d={`M${orig.loc.x} ${orig.loc.y} L ${dest.loc.x} ${dest.loc.y}`}
 			/>
+			<text textAnchor="middle" dy="-5">
+				<textPath href={"#"+lineId} startOffset="50%">
+					{label}
+				</textPath>
+			</text>
 		</svg>
 	)
 }

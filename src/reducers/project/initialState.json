@@ -33,7 +33,7 @@
             "parentId": "reqABCDEFGHIJ",
             "type": "response",
             "graphId": "welcome",
-            "name": "welcome",
+            "name": "general",
             "speech": "Hello world. Ready to get started?",
             "reprompt": "",
             "audio": [],
@@ -50,8 +50,9 @@
     "edges": {
         "reqABCDEFGHIJ": {
             "resKLMNOPQRST": {
-                "label": ""
+                "label": "label"
             }
-        }
+        },
+        "resKLMNOPQRST": {}
     }
 }

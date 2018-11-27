@@ -6,27 +6,20 @@
 	border: 2px solid gray;
 	background-color: white;
 
-	.node-name {
-		padding: 2px;
+	.node-name-span {
 		background-color: gray;
+		color: white;
+		height: 20px;
+		padding: 2px;
+		width: 100%;
+	}
+	.node-name {
+		background-color: transparent;
+		width: auto;
 		color: white;
 	}
 
-	.node-drag-area {
-		position: absolute;
-		right: 0;
-		width: 10px;
-		height: 10px;
-		background-color: purple;
-	}
-
 	.node-text {
-		display: block;
-		padding: 8px;
-		resize: none;
-		overflow: hidden;
-		min-height: 60px;
-		height: fit-content;
 		font-family: monospace;
 
 		&.node-speech {
@@ -37,10 +30,6 @@
 			color: white;
 			background-color: #3f4ca3;
 		}
-
-		&:active,&:hover,&:focus {
-			outline: none;
-		}
 	}
 
 	.node-drop {
@@ -49,5 +38,13 @@
 		text-align: center;
 		padding: 8px;
 		font-size: 0.5em;
+	}
+
+	.node-drag-area {
+		top: -2px;
+		right: -2px;
+		width: 22px;
+		height: 22px;
+		border-top-right-radius: 5px;
 	}
 }

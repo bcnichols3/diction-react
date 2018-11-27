@@ -5,7 +5,6 @@
 	.node-container {
 		position: relative;
 		margin: 10px;
-		margin-bottom: 40px;
 		z-index: 5;
 		transition: box-shadow 200ms;
 
@@ -21,6 +20,33 @@
 		.node-name,.node-text {
 			border: none;
 			width: 100%;
+		}
+	}
+
+	.node-text {
+		display: block;
+		padding: 8px;
+		resize: none;
+		overflow: hidden;
+		min-height: 60px;
+		height: fit-content;
+
+		&:active,&:hover,&:focus {
+			outline: none;
+		}
+	}
+
+	.node-drag-area {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 20px;
+		height: 20px;
+		background-color: purple;
+		cursor: grab;
+
+		&.dragging {
+			cursor: grabbing;
 		}
 	}
 }

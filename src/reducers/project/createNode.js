@@ -9,6 +9,10 @@ const newNode = {
 		name: "New Node",
 		speech: "",
 		audio: []
+	},
+	comment: {
+		name: "New Node",
+		message: ""
 	}
 }
 

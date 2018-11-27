@@ -1,7 +1,10 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 
+import classNames from "classnames";
+
 import {actions as uiActions} from "../../../reducers/ui";
+import {actions as projectActions} from "../../../reducers/project";
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -21,9 +24,10 @@ class NodeDrag extends PureComponent {
 		evt.preventDefault();
 		if (this.props.nodeDrag) return;
 		this.props.toggleNodeDrag();
+
 		this.diffX = evt.clientX;
 		this.diffY = evt.clientY;
-		console.log('DIFFS', this.diffX, this.diffY);
+
 		window.onmousemove = this.handleMouseMove;
 		window.onmouseup = this.handleMouseUp;
 	}
@@ -49,8 +53,11 @@ class NodeDrag extends PureComponent {
 	}
 
 	render() {
+		const CLASS_NAME = classNames("node-drag-area", {
+			dragging: this.props.nodeDrag
+		});
 		return (
-			<div className="node-drag-area"
+			<div className={CLASS_NAME}
 				onMouseDown={this.handleMouseDown}
 			/>
 		)
@@ -64,7 +71,8 @@ const mapState = ({ui}) => ({
 });
 
 const mapDispatch = {
-	toggleNodeDrag: uiActions.toggleNodeDrag
+	toggleNodeDrag: uiActions.toggleNodeDrag,
+	updateNode: projectActions.updateNode
 }
 
 export default connect(mapState, mapDispatch)(NodeDrag);

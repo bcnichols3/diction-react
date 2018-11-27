@@ -8,6 +8,7 @@ const NodeText = ({type, attributes}) => (
 		placeholder={type}
 		wrap="soft"
 		autoComplete="off"
+		data-keystring={type}
 		style={{ height: getHeight(attributes.value) }}
 		{...attributes}
 	/>

@@ -1,0 +1,31 @@
+.node-wrapper.node-request .node-container {
+	border-radius: 50%;
+	background-color: #66fd64;
+	width: 100px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.node-name {
+		padding: 2px;
+		width: 100%;
+		background-color: transparent;
+		color: black;
+		text-align: center;
+	}
+
+	.node-drag-area {
+		width: 0px;
+		height: 0px;
+		top: -2.5px;
+		right: 10.5px;
+		background-color: #66fd64;
+		background-color: transparent;
+		border-top: 25px solid transparent;
+		border-bottom: 25px solid transparent;
+		border-right: 25px solid #37d134;
+		border-radius: 50%;
+		transform: rotate(-45deg);
+	}
+}

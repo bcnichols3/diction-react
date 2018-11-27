@@ -3,7 +3,7 @@ import "./style.scss";
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Decision = ({handleClick, className}) => (
+const Decision = ({className}) => (
 	<div className={className}>
 		<div className="node-fork" />
 	</div>

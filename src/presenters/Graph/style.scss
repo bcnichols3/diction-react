@@ -1,4 +1,5 @@
 .graph-wrapper {
 	overflow: auto;
-	min-height: 100vh;
+	margin-top: 50px;
+	min-height: calc(100vh - 50px);
 }

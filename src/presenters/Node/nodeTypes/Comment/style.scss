@@ -1,0 +1,28 @@
+.node-wrapper.node-comment .node-container {
+	background-color: rgba(0,0,0,0.2);
+	color: black;
+	width: fit-content;
+	min-width: 200px;
+	max-width: 33vw;
+	border-radius: 5px;
+	border: 2px solid rgba(0,0,0,0.6);
+
+	.node-text {
+		font-family: monospace;
+		border: none;
+		border-radius: none;
+		background-color: transparent;
+
+		&.node-message {
+			color: white;
+		}
+	}
+
+	.node-drag-area {
+		top: -2px;
+		right: -2px;
+		width: 22px;
+		height: 22px;
+		border-top-right-radius: 5px;
+	}
+}

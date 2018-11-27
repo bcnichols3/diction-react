@@ -43,7 +43,7 @@ export const handlers = {
 		return Object.assign({}, state, {
 			graphSize: {
 				width: window.innerWidth,
-				height: window.innerHeight
+				height: window.innerHeight - 50
 			}
 		})
 	},

@@ -1,0 +1,24 @@
+.appbar {
+	height: 50px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	background-color: black;
+	display: flex;
+	flex-direction: row nowrap;
+	justify-content: space-between;
+
+	.app-name {
+		color: white;
+		padding-left: 10px;
+		width: fit-content;
+	}
+
+	.download-button {
+		height: 80%;
+		margin: 5px;
+		color: white;
+		background-color: darkgray;
+	}
+}

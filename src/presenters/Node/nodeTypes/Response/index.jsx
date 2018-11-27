@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
 import "./style.scss";
 
-import Dropzone from "react-dropzone";
-import NodeText from "../NodeText";
-import NodeDrag from "../NodeDrag";
+// import Dropzone from "react-dropzone";
+import NodeText from "../../NodeText";
+import NodeDrag from "../../NodeDrag";
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -24,12 +24,16 @@ class ResponseNode extends PureComponent {
         return (
 			<div className={className}>
 				<NodeDrag {...this.props}/>
-				<input type="text"
-					className="node-name"
-					value={node.name}
-					placeholder="node name"
-					onChange={this.props.handleChange}
-				/>
+				<span className="node-name-span">
+					{node.graphId + "."}
+					<input type="text"
+						data-keystring="name"
+						className="node-name"
+						value={node.name}
+						placeholder="node name"
+						onChange={this.props.handleChange}
+					/>
+				</span>
 				<NodeText type="speech"
 					attributes={{
 						value: node.speech,
@@ -42,11 +46,11 @@ class ResponseNode extends PureComponent {
 						onChange: this.props.handleChange
 					}}
 				/> */}
-				<Dropzone className="node-drop"
+				{/* <Dropzone className="node-drop"
 					accept="audio/mp3, audio/wav"
 					onDrop={this.handleDrop}>
 					Add Audio
-				</Dropzone>
+				</Dropzone> */}
 			</div>
         );
     }
