@@ -1,27 +1,36 @@
 import React, {Fragment} from "react";
 import {connect} from "react-redux";
 
+import TabbedPage from "../../presenters/TabbedPage";
 import Graph from "../../presenters/Graph";
-import Sidebar from "../../presenters/Sidebar";
+import NodeSidebar from "../NodeSidebar";
 
-import NewConnectionModal from "../NewConnectionModal";
+import NewEdgeModal from "../NewEdgeModal";
+import UploadProjectModal from "../UploadProjectModal";
 
 /* -----------------    COMPONENT     ------------------ */
 
-const ProjectPage = ({project, newConnModalPhase}) => (
+const ProjectPage = ({project, modalPhases, location}) => (
 	<Fragment>
-		<Sidebar />
-		{newConnModalPhase !== 'closed'
-			? <NewConnectionModal phase={newConnModalPhase}/>
-		: null}
-		<Graph data={project.graphsById.welcome} />
+		<TabbedPage location={location}>
+			{project.allGraphIds.map(gid => (
+				<Graph key={"graph"+gid}
+					id={gid}
+					data={project.graphsById[gid]}
+				/>
+			))}
+		</TabbedPage>
+		<NodeSidebar />
+		<NewEdgeModal phase={modalPhases.newEdge}/>
+		<UploadProjectModal phase={modalPhases.uploadProject}/>
 	</Fragment>
 )
 
 /* -----------------    CONTINER     ------------------ */
 
-const mapState = ({project, ui}) => ({
-	newConnModalPhase: ui.modalPhases.newConnection,
+const mapState = ({project, ui, location}) => ({
+	location,
+	modalPhases: ui.modalPhases,
 	project
 });
 

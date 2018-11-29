@@ -6,6 +6,7 @@ import createNode from "./createNode";
 // ========== TYPES
 
 const types = {
+	RECEIVE_PROJECT: "RECEIVE_PROJECT",
 	SELECT_NODE: "SELECT_NODE",
 	CREATE_NODE: "CREATE_NODE",
 	UPDATE_NODE: "UPDATE_NODE",
@@ -21,6 +22,9 @@ export const initial = initialState;
 
 // ========== HANDLERS
 export const handlers = {
+	[types.RECEIVE_PROJECT]: function(state, project) {
+		return project ? project : state;
+	},
 	[types.SELECT_NODE]: function(state, {nodeId}) {
 		return Object.assign({}, state, {
 			selectedNodeId: nodeId

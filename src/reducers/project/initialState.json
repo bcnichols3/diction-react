@@ -9,10 +9,19 @@
                 "reqABCDEFGHIJ",
                 "resKLMNOPQRST"
             ]
+        },
+        "exception": {
+            "id": "exception",
+            "name": "Exception",
+            "allNodeIds": [
+                "reqUVWXYZABCD",
+                "resEFGHIJKLMN"
+            ]
         }
     },
     "allGraphIds": [
-        "welcome"
+        "welcome",
+        "exception"
     ],
     "selectedGraphId": "welcome",
     "selectedNodeId": null,
@@ -41,11 +50,38 @@
                 "x": 500,
                 "y": 350
             }
+        },
+        "reqUVWXYZABCD": {
+            "id": "reqUVWXYZABCD",
+            "parentId": null,
+            "type": "request",
+            "graphId": "exception",
+            "name": "help",
+            "loc": {
+                "x": 500,
+                "y": 175
+            }
+        },
+        "resEFGHIJKLMN": {
+            "id": "resEFGHIJKLMN",
+            "parentId": "reqUVWXYZABCD",
+            "type": "response",
+            "graphId": "exception",
+            "name": "help",
+            "speech": "This is the help message",
+            "reprompt": "",
+            "audio": [],
+            "loc": {
+                "x": 500,
+                "y": 350
+            }
         }
     },
     "allNodeIds": [
         "reqABCDEFGHIJ",
-        "resKLMNOPQRST"
+        "resKLMNOPQRST",
+        "reqUVWXYZABCD",
+        "resEFGHIJKLMN"
     ],
     "edges": {
         "reqABCDEFGHIJ": {
@@ -53,6 +89,11 @@
                 "label": "label"
             }
         },
-        "resKLMNOPQRST": {}
+        "resKLMNOPQRST": {},
+        "reqUVWXYZABCD": {
+            "resEFGHIJKLMN": {
+                "label": "label"
+            }
+        }
     }
 }

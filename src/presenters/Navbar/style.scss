@@ -1,0 +1,25 @@
+.navbar {
+	position: relative;
+	width: 100vw;
+	height: 50px;
+	background-color: black;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	z-index: 2;
+
+	.app-name {
+		color: white;
+		padding-left: 10px;
+		width: fit-content;
+	}
+
+	.button-container {
+		button {
+			height: 80%;
+			margin: 5px;
+			color: white;
+			background-color: darkgray;
+		}
+	}
+}

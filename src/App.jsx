@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import ProjectPage from "./containers/ProjectPage";
-import Appbar from "./presenters/Appbar";
+import AppBar from "./containers/NodeAppBar";
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -13,7 +13,7 @@ export default class App extends Component {
         return (
 			<Provider store={store}>
 				<Fragment>
-					<Appbar />
+					<AppBar />
 					<ProjectPage />
 				</Fragment>
 			</Provider>

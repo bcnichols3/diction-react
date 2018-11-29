@@ -16,7 +16,8 @@ export const initial = {
 	appbarOpen: false,
 	sidebarOpen: false,
 	modalPhases: {
-		newConnection: "closed"
+		newEdge: "closed",
+		uploadProject: "closed"
 	},
 	nodeDrag: false,
 	graphSize: {
@@ -65,8 +66,10 @@ export const actions = buildActionCreators(types);
 // ========== THUNKS
 
 const PHASES = ["closed", "opening", "open", "closing"];
-const advancePhase = (phase) => PHASES[(PHASES.indexOf(phase) + 1) % PHASES.length];
-export const advanceModalPhase = ({name, delay=20, phase}) => dispatch => {
+const advancePhase = (phase) => {
+	return PHASES[(PHASES.indexOf(phase) + 1) % PHASES.length];
+}
+export const advanceModalPhase = ({name, phase, delay=20}) => dispatch => {
 	phase = advancePhase(phase);
 	dispatch(actions.phaseModal({name, phase}))
 	phase = advancePhase(phase);

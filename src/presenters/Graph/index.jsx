@@ -25,7 +25,6 @@ class Graph extends PureComponent {
 
 		return (
 			<div className="graph-wrapper" onClick={handleClick}>
-				<h1>{graph.name}</h1>
 				{graph.allNodeIds.map((nodeId, idx) => (
 					<Node key={nodeId} node={nodesById[nodeId]} />
 				))}
@@ -45,10 +44,10 @@ class Graph extends PureComponent {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({project, ui}) => {
-	const graph = project.graphsById[project.selectedGraphId];
+const mapState = ({project}, {data}) => {
+	// const graph = project.graphsById[project.selectedGraphId];
 	return {
-		graph,
+		graph: data,
 		edges: project.edges,
 		nodesById: project.nodesById
 	}

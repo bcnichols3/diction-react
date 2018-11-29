@@ -11,7 +11,7 @@ const name = "newEdge"
 
 /* -----------------    COMPONENT     ------------------ */
 
-const NewConnectionModal = ({project, phase, handleConnClick}) => (
+const NewEdgeModal = ({project, phase, handleConnClick}) => (
 	<Modal name={name} delay={delay} phase={phase}>
 		<h3>Add</h3>
 		<button onClick={handleConnClick}>
@@ -30,4 +30,4 @@ const mapDispatch = (dispatch, {phase}) => ({
 });
 
 
-export default connect(null, mapDispatch)(NewConnectionModal)
+export default connect(null, mapDispatch)(NewEdgeModal)
