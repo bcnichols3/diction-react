@@ -1,15 +1,19 @@
 import {createHandlerReducer, buildActionCreators} from "../../helpers";
 import initialState from './initialState';
 
-import createNode from "./createNode";
+import {
+	selectNode, createNode, createNodeEdge, deleteNodeEdge
+} from "./manipulators";
 
 // ========== TYPES
 
 const types = {
 	RECEIVE_PROJECT: "RECEIVE_PROJECT",
+	UPDATE_GRAPH: "UPDATE_GRAPH",
 	SELECT_NODE: "SELECT_NODE",
 	CREATE_NODE: "CREATE_NODE",
 	UPDATE_NODE: "UPDATE_NODE",
+	INSERT_NODE: "INSERT_NODE",
 	DELETE_NODE: "DELETE_NODE",
 	RECOVER_NODE: "RECOVER_NODE",
 	CREATE_EDGE: "CREATE_EDGE",
@@ -25,40 +29,27 @@ export const handlers = {
 	[types.RECEIVE_PROJECT]: function(state, project) {
 		return project ? project : state;
 	},
-	[types.SELECT_NODE]: function(state, {nodeId}) {
-		return Object.assign({}, state, {
-			selectedNodeId: nodeId
+	[types.UPDATE_GRAPH]: function(state, graph) {
+		state = Object.assign({}, state);
+		state.graphsById = Object.assign({}, state.graphsById, {
+			[graph.id]: graph
 		});
+		return state;
+	},
+	[types.SELECT_NODE]: function(state, {nodeId}) {
+		const newState = Object.assign({}, state);
+		selectNode(newState, {nodeId});
+		return newState
 	},
 	[types.CREATE_NODE]: function(state, {type}) {
 		const newState = Object.assign({}, state);
 
-		const selectedGraph = newState.graphsById[newState.selectedGraphId];
-		const {allNodeIds} = selectedGraph;
-		const selectedNode = newState.nodesById[newState.selectedNodeId];
+		const parentId = newState.selectedNodeId;
 
-		const newNode = createNode(type, selectedNode, selectedGraph);
+		const newNode = createNode(newState, {type, parentId});
 
-		// add to node registries
-		newState.allNodeIds = newState.allNodeIds.concat(newNode.id);
-		newState.graphsById[selectedGraph.id] = Object.assign({},
-			selectedGraph, {
-				allNodeIds: allNodeIds.concat(newNode.id)
-			}
-		);
-		newState.nodesById = Object.assign({}, newState.nodesById, {
-			[newNode.id]: newNode
-		});
-		// add edges (comments have no edges)
-		if (type !== "comment") {
-			if (!newState.edges[selectedNode.id]) {
-				newState.edges[selectedNode.id] = {};
-			}
-			newState.edges[selectedNode.id][newNode.id] = {
-				label: "New Edge"
-			};
-			newState.edges[newNode.id] = {};
-		}
+		createNodeEdge(newState, {type, parentId, childId: newNode.id});
+		selectNode(newState, {nodeId: newNode.id});
 
 		return newState;
 	},
@@ -89,13 +80,30 @@ export const handlers = {
 		};
 		return newState;
 	},
-	[types.UPDATE_EDGE]: function(state, {origId, destId, label}) {
+	[types.UPDATE_EDGE]: function(state, edge) {
 		const newState = Object.assign({}, state, {
 			edges: Object.assign({}, state.edges)
 		});
-		newState.edges[origId][destId] = {
-			label
-		};
+		newState.edges[edge.parentId][edge.childId] = edge;
+		return newState;
+	},
+	[types.INSERT_NODE]: function(state, {type, edge}) {
+		const newState = Object.assign({}, state);
+		const {parentId, childId} = edge;
+
+		const newNode = createNode(newState, {type, parentId});
+
+		// reassign the parent of the child
+		newState.nodesById[childId].parentId = newNode.id;
+
+		// connect parent to new node
+		createNodeEdge(newState, {type, parentId, childId: newNode.id});
+		// connect new node to child
+		createNodeEdge(newState, {type, parentId: newNode.id, childId});
+		// delete old connection
+		deleteNodeEdge(newState, {parentId, childId});
+		// select inserted node
+		selectNode(newState, {nodeId: newNode.id});
 		return newState;
 	}
 }

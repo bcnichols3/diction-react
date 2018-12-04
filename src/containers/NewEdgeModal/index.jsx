@@ -22,12 +22,28 @@ const NewEdgeModal = ({project, phase, handleConnClick}) => (
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapDispatch = (dispatch, {phase}) => ({
-	handleConnClick(evt) {
-		dispatch(advanceModalPhase({name, delay, phase}))
-		dispatch(projectActions.createNode())
-	}
+const mapState = ({ui}) => ({
+	phase: ui.modalPhases.newEdge
 });
 
+const mapDispatch = {
+	advanceModalPhase,
+	createNode: projectActions.createNode
+}
 
-export default connect(null, mapDispatch)(NewEdgeModal)
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+	const {phase} = stateProps;
+	const {advanceModalPhase, createNode} = dispatchProps;
+	return {
+		...stateProps,
+		...dispatchProps,
+		...ownProps,
+		handleConnClick(evt) {
+			advanceModalPhase({name, delay, phase});
+			createNode();
+		}
+	}
+}
+
+
+export default connect(mapState, mapDispatch, mergeProps)(NewEdgeModal)

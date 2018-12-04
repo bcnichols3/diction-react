@@ -29,8 +29,8 @@ const Node = (props) => {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapState = ({project}, {node}) => ({
-	locX: node.loc.x,
-	locY: node.loc.y,
+	locX: node.loc.x + project.graphsById[node.graphId].loc.x,
+	locY: node.loc.y + project.graphsById[node.graphId].loc.y,
 	selected: node.id === project.selectedNodeId
 });
 

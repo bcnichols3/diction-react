@@ -8,8 +8,9 @@ import {actions as projectActions} from "../../reducers/project";
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Edge = ({label, orig, dest, viewBox, handleChange}) => {
-	const lineId = `edge_${orig.id}_${dest.id}`
+const Edge = (props) => {
+	const {label, parentId, parentLoc, childId, childLoc, viewBox, handleDoubleClick} = props;
+	const lineId = `edge_${parentId}_${childId}`
 	return (
 		<svg className="edge-wrapper"
 			viewBox={viewBox}
@@ -17,7 +18,8 @@ const Edge = ({label, orig, dest, viewBox, handleChange}) => {
 			<path id={lineId}
 				stroke="black"
 				strokeWidth="5px"
-				d={`M${orig.loc.x} ${orig.loc.y} L ${dest.loc.x} ${dest.loc.y}`}
+				onDoubleClick={handleDoubleClick}
+				d={`M${parentLoc.x} ${parentLoc.y} L ${childLoc.x} ${childLoc.y}`}
 			/>
 			<text textAnchor="middle" dy="-5">
 				<textPath href={"#"+lineId} startOffset="50%">
@@ -30,32 +32,36 @@ const Edge = ({label, orig, dest, viewBox, handleChange}) => {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({project, ui}, {origId, destId}) => {
-	const orig = project.nodesById[origId];
-	const dest = project.nodesById[destId];
-	const edge = project.edges[origId][destId];
+const mapState = ({project, ui}, {edge}) => {
+	const parent = project.nodesById[edge.parentId];
+	const child = project.nodesById[edge.childId];
+	const graph = project.graphsById[parent.graphId];
 	const {graphSize} = ui;
+
 	return {
+		...project.edges[parent.id][child.id],
 		viewBox: `0 0 ${graphSize.width} ${graphSize.height}`,
-		label: edge.label,
-		orig: {
-			id: orig.id,
-			loc: orig.loc
+		parentLoc: {
+			x: parent.loc.x + graph.loc.x,
+			y: parent.loc.y + graph.loc.y
 		},
-		dest: {
-			id: dest.id,
-			loc: dest.loc
+		childLoc: {
+			x: child.loc.x + graph.loc.x,
+			y: child.loc.y + graph.loc.y
 		}
 	}
 }
 
-const mapDispatch = (dispatch, {origId, destId}) => ({
+const mapDispatch = (dispatch, {edge}) => ({
+	handleDoubleClick(evt) {
+		evt.stopPropagation();
+		dispatch(projectActions.insertNode({type: "decision", edge}))
+	},
 	handleChange(evt) {
-		dispatch(projectActions.updateEdge({
-			origId,
-			destId,
+		const newEdge = Object.assign({}, edge, {
 			label: evt.target.value
-		}));
+		})
+		dispatch(projectActions.updateEdge(newEdge));
 	}
 })
 

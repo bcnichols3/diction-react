@@ -26,5 +26,14 @@
 		&.open {
 			display: block;
 		}
+
+		.graph-drag-area {
+			&.controlling {
+				cursor: grab;
+			}
+			&.controlling.dragging {
+				cursor: grabbing;
+			}
+		}
 	}
 }

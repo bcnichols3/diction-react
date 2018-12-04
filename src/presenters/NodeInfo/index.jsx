@@ -1,14 +1,19 @@
 import React, {Fragment} from "react";
 
 const types = {
+	request: props => (<Fragment>
+		<h6>Request</h6>
+		<p>{`Intent: ${props.name}`}</p>
+	</Fragment>)
+	,
 	response: props => (<Fragment>
 		<h6>Response</h6>
 		<p>{`${props.graphId}.${props.name}`}</p>
 	</Fragment>)
 	,
-	request: props => (<Fragment>
-		<h6>Request</h6>
-		<p>{`Intent: ${props.name}`}</p>
+	link: props => (<Fragment>
+		<h6>Link</h6>
+		<p>{`to: ${props.name}`}</p>
 	</Fragment>)
 	,
 	decision: props => (<Fragment>

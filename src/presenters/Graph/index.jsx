@@ -1,6 +1,8 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import "./style.scss";
+
+import DragArea from "../../containers/DragArea";
 
 import {actions as projectActions} from "../../reducers/project";
 import {actions as uiActions} from "../../reducers/ui";
@@ -11,55 +13,69 @@ import Edge from "../Edge";
 
 /* -----------------    COMPONENT     ------------------ */
 
-class Graph extends PureComponent {
-	componentDidMount() {
-		this.listener = window.addEventListener("resize", this.props.handleResize);
-	}
+const Graph = (props) => {
+	const {graph, edges, nodesById, handleClick} = props;
 
-	componentWillUnmount() {
-		window.removeEventListener("resize", this.props.handleResize)
-	}
-
-	render() {
-		const {graph, edges, nodesById, handleClick} = this.props;
-
-		return (
+	return (
+		<DragArea
+			className="graph-drag-area"
+			toggleDrag={props.toggleGraphDrag}
+			isControlling={props.control}
+			isDragging={props.graphIsDragging}
+			onMouseMove={props.onMouseMove}
+			pos={graph.loc}>
 			<div className="graph-wrapper" onClick={handleClick}>
 				{graph.allNodeIds.map((nodeId, idx) => (
 					<Node key={nodeId} node={nodesById[nodeId]} />
 				))}
-				{graph.allNodeIds.map(origId => {
-					if (!edges[origId]) return null;
-					return Object.keys(edges[origId]).map(destId => (
-						<Edge key={origId + destId}
-							origId={origId}
-							destId={destId}
+				{graph.allNodeIds.map(parentId => {
+					if (!edges[parentId]) return null;
+					return Object.keys(edges[parentId]).map(childId => (
+						<Edge key={parentId + childId}
+							edge={edges[parentId][childId]}
 						/>
 					))
 				})}
 			</div>
-		)
-	}
+		</DragArea>
+	)
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({project}, {data}) => {
+const mapState = ({project, ui}, {graph}) => {
 	// const graph = project.graphsById[project.selectedGraphId];
 	return {
-		graph: data,
+		graph,
 		edges: project.edges,
-		nodesById: project.nodesById
+		nodesById: project.nodesById,
+		control: ui.control,
+		graphIsDragging: ui.graphDrag,
 	}
 }
 
-const mapDispatch = (dispatch => ({
-	handleResize(evt) {
-		dispatch(uiActions.windowChange());
-	},
-	handleClick(evt) {
-		dispatch(projectActions.selectNode({nodeId: null}))
-	}
-}))
+const mapDispatch = {
+	updateGraph: projectActions.updateGraph,
+	selectNode: projectActions.selectNode,
+	toggleGraphDrag: uiActions.toggleGraphDrag
+};
 
-export default connect(mapState, mapDispatch)(Graph);
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+	const {selectNode, updateGraph} = dispatchProps;
+	return {
+		...stateProps,
+		...dispatchProps,
+		...ownProps,
+		handleClick(evt) {
+			if (stateProps.control) return;
+			selectNode({nodeId: null});
+		},
+		onMouseMove(loc) {
+			if (!stateProps.control) return;
+			const newGraph = Object.assign({}, stateProps.graph, {loc});
+			updateGraph(newGraph);
+		},
+	}
+}
+
+export default connect(mapState, mapDispatch, mergeProps)(Graph);

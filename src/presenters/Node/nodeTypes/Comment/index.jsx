@@ -7,7 +7,8 @@ import NodeDrag from "../../NodeDrag";
 /* -----------------    COMPONENT     ------------------ */
 
 const Comment = (props) => {
-	const {handleChange, className, node} = props;
+	const {node, handleChange, className} = props;
+
 	return (<div className={className}>
 		<div className="node-comment">
 			<NodeDrag {...props}/>

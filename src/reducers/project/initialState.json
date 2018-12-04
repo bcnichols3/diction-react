@@ -8,7 +8,11 @@
             "allNodeIds": [
                 "reqABCDEFGHIJ",
                 "resKLMNOPQRST"
-            ]
+            ],
+            "loc": {
+                "x": 0,
+                "y": 0
+            }
         },
         "exception": {
             "id": "exception",
@@ -16,7 +20,11 @@
             "allNodeIds": [
                 "reqUVWXYZABCD",
                 "resEFGHIJKLMN"
-            ]
+            ],
+            "loc": {
+                "x": 0,
+                "y": 0
+            }
         }
     },
     "allGraphIds": [
@@ -86,14 +94,19 @@
     "edges": {
         "reqABCDEFGHIJ": {
             "resKLMNOPQRST": {
+                "parentId": "reqABCDEFGHIJ",
+                "childId": "resKLMNOPQRST",
                 "label": "label"
             }
         },
         "resKLMNOPQRST": {},
         "reqUVWXYZABCD": {
             "resEFGHIJKLMN": {
+                "parentId": "reqUVWXYZABCD",
+                "childId": "resEFGHIJKLMN",
                 "label": "label"
             }
-        }
+        },
+        "resEFGHIJKLMN": {}
     }
 }
