@@ -1,14 +1,10 @@
 import React from "react";
 import "./style.scss";
 
-import NodeDrag from "../../NodeDrag";
-
 /* -----------------    COMPONENT     ------------------ */
 
 const Decision = (props) => (
-	<div className={props.className} >
-		<NodeDrag {...props}/>
-	</div>
+	<div className={props.className} />
 );
 
 export default Decision;
