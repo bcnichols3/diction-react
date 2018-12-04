@@ -5,7 +5,6 @@
 
 	.node-container {
 		position: relative;
-		margin: 10px;
 		z-index: 5;
 		transition: box-shadow 200ms;
 
@@ -38,16 +37,11 @@
 	}
 
 	.node-drag-area {
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 20px;
-		height: 20px;
-		background-color: purple;
-		cursor: grab;
-
-		&.dragging {
-			cursor: grabbing;
+		&.controlling {
+			cursor: grab !important;
+		}
+		&.controlling.dragging {
+			cursor: grabbing !important;
 		}
 	}
 }

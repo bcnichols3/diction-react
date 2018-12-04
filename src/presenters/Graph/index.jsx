@@ -19,9 +19,6 @@ const Graph = (props) => {
 	return (
 		<DragArea
 			className="graph-drag-area"
-			toggleDrag={props.toggleGraphDrag}
-			isControlling={props.control}
-			isDragging={props.graphIsDragging}
 			onMouseMove={props.onMouseMove}
 			pos={graph.loc}>
 			<div className="graph-wrapper" onClick={handleClick}>
@@ -49,8 +46,7 @@ const mapState = ({project, ui}, {graph}) => {
 		graph,
 		edges: project.edges,
 		nodesById: project.nodesById,
-		control: ui.control,
-		graphIsDragging: ui.graphDrag,
+		isDragging: ui.control || ui.drag,
 	}
 }
 
@@ -67,11 +63,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 		...dispatchProps,
 		...ownProps,
 		handleClick(evt) {
-			if (stateProps.control) return;
+			if (stateProps.isDragging) return;
 			selectNode({nodeId: null});
 		},
 		onMouseMove(loc) {
-			if (!stateProps.control) return;
 			const newGraph = Object.assign({}, stateProps.graph, {loc});
 			updateGraph(newGraph);
 		},

@@ -3,7 +3,6 @@ import "./style.scss";
 
 // import Dropzone from "react-dropzone";
 import NodeText from "../../NodeText";
-import NodeDrag from "../../NodeDrag";
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -23,7 +22,6 @@ class ResponseNode extends PureComponent {
 
         return (
 			<div className={className}>
-				<NodeDrag {...this.props}/>
 				<span className="node-name-span">
 					{node.graphId + "."}
 					<input type="text"

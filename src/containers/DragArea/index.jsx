@@ -1,9 +1,9 @@
 import React, {PureComponent} from "react";
-// import {connect} from "react-redux";
+import {connect} from "react-redux";
 
 import classNames from "classnames";
 
-// import {actions as uiActions} from "../../../reducers/ui";
+import {actions as uiActions} from "../../reducers/ui";
 // import {actions as projectActions} from "../../../reducers/project";
 
 /* -----------------    COMPONENT     ------------------ */
@@ -65,4 +65,13 @@ class DragArea extends PureComponent {
 	}
 }
 
-export default DragArea;
+const mapState = ({ui}) => ({
+	isControlling: ui.control,
+	isDragging: ui.drag
+})
+
+const mapDispatch = {
+	toggleDrag: uiActions.toggleDrag
+}
+
+export default connect(mapState, mapDispatch)(DragArea);

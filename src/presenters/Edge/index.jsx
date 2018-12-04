@@ -36,11 +36,11 @@ const mapState = ({project, ui}, {edge}) => {
 	const parent = project.nodesById[edge.parentId];
 	const child = project.nodesById[edge.childId];
 	const graph = project.graphsById[parent.graphId];
-	const {graphSize} = ui;
+	const {windowSize} = ui;
 
 	return {
 		...project.edges[parent.id][child.id],
-		viewBox: `0 0 ${graphSize.width} ${graphSize.height}`,
+		viewBox: `0 0 ${windowSize.width} ${windowSize.height}`,
 		parentLoc: {
 			x: parent.loc.x + graph.loc.x,
 			y: parent.loc.y + graph.loc.y
